@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
@@ -30,6 +29,7 @@ def anagrams(words: list = None) -> bool:
     word2.sort()
     if (word1 ==word2):
         is_ana = True
+    print (is_ana)
     return is_ana
 
 
@@ -70,16 +70,21 @@ def frequence(sentence: str) -> dict:
             if letter == lettre:
                 counter += 1
         dict_list[lettre] = counter
-    print (dict_list)
-    frequency = 1
+    print(dict_list)
+    frequency = 5
     dict_ord = {}
-    for lettre in dict_list:
-        if dict_list[lettre]==frequency:
-            dict_ord[lettre] = frequency
-        frequency +=1
-    print (dict_ord)
-
-    return dict_ord
+    for i in dict_list:
+        if dict_list[i] >= frequency:
+            dict_ord[i] = dict_list[i]
+    print(dict_ord)
+    sorted_values = sorted(dict_ord.values(), reverse=True)
+    dict_ord2 = {}
+    for i in sorted_values:
+        for k in dict_ord.keys():
+            if dict_ord[k] == i:
+                dict_ord2[k] = dict_ord[k]
+                break
+    print(dict_ord2)
 
 
 def get_recipes():
@@ -97,7 +102,7 @@ def main() -> None:
     order()
 
     print(f"On vérifie les anagrammes...")
-    anagrams()
+    print("Are both words anagrams of each other ? ",anagrams())
 
     my_list = [3, 3, 5, 6, 1, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
