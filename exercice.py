@@ -5,33 +5,81 @@
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        pass
-
-    return []
+        liste = []
+        for i in range (0,10,1):
+            valeur = input ("Entrez une valeur : ")
+            liste.append(valeur)
+    liste.sort()
+    print (liste)
+    return liste
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
-        pass
-
-    return False
+        mot1 = input("Entrez votre premier mot :")
+        mot2 = input("Entrez votre deuxième mot :")
+    is_ana = False
+    word1 =[]
+    word2 =[]
+    for i in mot1:
+        word1.append(i)
+    for i in mot2:
+        word2.append(i)
+    word1.sort()
+    word2.sort()
+    if (word1 ==word2):
+        is_ana = True
+    return is_ana
 
 
 def contains_doubles(items: list) -> bool:
-    return False
+    list_to_set = set()
+    for i in items:
+        list_to_set.add(i)
+    doubles = False
+    for i in list_to_set:
+        if len (list_to_set) != len (items):
+            doubles = True
+    return doubles
 
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+    for student in student_grades:
+        grades = student_grades[student]
+        average = sum(grades)/len(grades)
+        student_grades[student] = average
+    all_grades = student_grades.values()
+    max_grade = max(all_grades)
+    max_student = {}
+    for student in student_grades:
+        if student_grades[student] == max_grade:
+            max_student[student] = max_grade
+    return max_student
 
 
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
+    alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    dict_list = {}
+    for lettre in alphabet:
+        counter = 0
+        for letter in sentence :
+            if letter == lettre:
+                counter += 1
+        dict_list[lettre] = counter
+    print (dict_list)
+    frequency = 1
+    dict_ord = {}
+    for lettre in dict_list:
+        if dict_list[lettre]==frequency:
+            dict_ord[lettre] = frequency
+        frequency +=1
+    print (dict_ord)
 
-    return {}
+    return dict_ord
 
 
 def get_recipes():
